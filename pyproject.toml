@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tsn-affinity"
+version = "0.1.0"
+description = "TSN-Affinity: Training-Aware Sparse Networks with Affinity Routing for Continual Offline RL"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0",
+    "gymnasium",
+    "numpy>=1.24",
+    "scikit-learn>=1.0",
+]
+
+[project.optional-dependencies]
+atari = ["gymnasium[accept-license-requests]"]
+dev = ["pytest", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,70 @@
+{
+  "strategy": "tsn_affinity",
+  "games": [
+    "Breakout",
+    "Alien",
+    "Atlantis",
+    "Boxing",
+    "Centipede"
+  ],
+  "metrics": {
+    "acc": 1.0,
+    "bwt": 0.0,
+    "forgetting": 0.0,
+    "fwt": 0.0
+  },
+  "random_losses": [
+    3.3392083168029787,
+    3.341427040100098,
+    3.3441160678863526,
+    3.3410181045532226,
+    3.3804236888885497
+  ],
+  "task_similarity": {
+    "0": {
+      "source_task": null,
+      "copy_id": 0,
+      "best_action": null,
+      "best_latent": null,
+      "best_score": null,
+      "score_mode": "action",
+      "created_new_copy": false
+    },
+    "1": {
+      "source_task": 0,
+      "copy_id": 0,
+      "best_action": 5.374897599220276,
+      "best_latent": NaN,
+      "best_score": 5.374897599220276,
+      "score_mode": "action",
+      "created_new_copy": false
+    },
+    "2": {
+      "source_task": 0,
+      "copy_id": 0,
+      "best_action": 2.1772592067718506,
+      "best_latent": NaN,
+      "best_score": 2.1772592067718506,
+      "score_mode": "action",
+      "created_new_copy": false
+    },
+    "3": {
+      "source_task": 0,
+      "copy_id": 0,
+      "best_action": 5.574584722518921,
+      "best_latent": NaN,
+      "best_score": 5.574584722518921,
+      "score_mode": "action",
+      "created_new_copy": false
+    },
+    "4": {
+      "source_task": 0,
+      "copy_id": 0,
+      "best_action": 5.085557579994202,
+      "best_latent": NaN,
+      "best_score": 5.085557579994202,
+      "score_mode": "action",
+      "created_new_copy": false
+    }
+  }
+}

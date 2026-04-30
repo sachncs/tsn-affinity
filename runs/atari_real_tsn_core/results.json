@@ -1,0 +1,24 @@
+{
+  "strategy": "tsn_core",
+  "games": [
+    "Breakout",
+    "Alien",
+    "Atlantis",
+    "Boxing",
+    "Centipede"
+  ],
+  "metrics": {
+    "acc": 1.0,
+    "bwt": 0.0,
+    "forgetting": 0.0,
+    "fwt": 0.0
+  },
+  "random_losses": [
+    3.381475639343262,
+    3.3391812324523924,
+    3.3288137435913088,
+    3.3432273387908937,
+    3.323231410980225
+  ],
+  "task_similarity": {}
+}

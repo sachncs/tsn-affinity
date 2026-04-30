@@ -1,0 +1,43 @@
+{
+  "config": {
+    "strategies": [
+      "tsn_core",
+      "tsn_affinity"
+    ],
+    "n_tasks": 5,
+    "trajs_per_task": 5,
+    "traj_len": 50,
+    "obs_dim": 8,
+    "n_actions": 4,
+    "train_steps": 100,
+    "n_runs": 3,
+    "output": "runs/benchmark_2026_04_30",
+    "device": "cpu"
+  },
+  "results": {
+    "tsn_core": {
+      "acc_mean": 0.5387584544601899,
+      "acc_std": 0.0027745310250754454,
+      "bwt_mean": -0.0012188762629447422,
+      "bwt_std": 0.0014574397267427214,
+      "forgetting_mean": 0.00284953564090753,
+      "forgetting_std": 0.0006618833148982642,
+      "fwt_mean": -0.0012188762629447422,
+      "fwt_std": 0.0014574397267427214,
+      "time_mean": 70.58305493990581,
+      "time_std": 3.7377187887740484
+    },
+    "tsn_affinity": {
+      "acc_mean": 0.40171844778672033,
+      "acc_std": 0.004056955595454116,
+      "bwt_mean": -0.0008030019967133955,
+      "bwt_std": 0.0015923091778745758,
+      "forgetting_mean": 0.0026081050012353737,
+      "forgetting_std": 0.0016399302157728776,
+      "fwt_mean": -0.0008030019967133955,
+      "fwt_std": 0.0015923091778745758,
+      "time_mean": 106.34934790929158,
+      "time_std": 4.176150150732563
+    }
+  }
+}
