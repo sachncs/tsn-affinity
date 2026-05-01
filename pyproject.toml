@@ -17,7 +17,84 @@ dependencies = [
 
 [project.optional-dependencies]
 atari = ["gymnasium[accept-license-requests]"]
-dev = ["pytest", "pytest-cov"]
+dev = ["pytest", "pytest-cov", "ruff>=0.6.0", "mypy>=1.0", "pre-commit"]
+
+[project.scripts]
+tsn-benchmark = "tsn_affinity.cli.benchmark:main"
+tsn-atari = "tsn_affinity.cli.atari:main"
+tsn-panda = "tsn_affinity.cli.panda:main"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["tsn_affinity*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "D", "W", "UP", "B"]
+ignore = ["D105", "D107"]
+unfixable = []
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D101", "D102", "D103", "D104"]
+"tsn_affinity/cli/**" = ["D103"]
+
+[tool.ruff.lint.pep8-naming]
+extend-ignore-names = ["B", "C", "D", "F", "H", "K", "L", "T", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+show_error_codes = true
+exclude = ["tests/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers --cov=tsn_affinity --cov-report=term-missing --cov-fail-under=70"
+markers = [
+    "slow: marks tests as slow (deselect with '-m not slow')",
+    "gpu: marks tests that require CUDA",
+]
+
+[tool.coverage.run]
+source = ["tsn_affinity"]
+omit = [
+    "tsn_affinity/__init__.py",
+    "tsn_affinity/**/__init__.py",
+    "tsn_affinity/data/trajectory.py",
+    "tsn_affinity/data/batch.py",
+    "tsn_affinity/data/panda.py",
+    "tsn_affinity/interfaces/*.py",
+    "tsn_affinity/cli/*.py",
+    "tsn_affinity/run/benchmark.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
