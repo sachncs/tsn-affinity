@@ -2,7 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- MIT License file
+- CONTRIBUTING.md with development guidelines
+- CODE_OF_CONDUCT.md (Contributor Covenant v2.1)
+- SECURITY.md with vulnerability reporting process
+- .editorconfig for consistent formatting
+- .gitattributes for line ending normalization
+- .env.example for environment variable documentation
+- GitHub issue templates (bug report, feature request)
+- Pull request template
+- Dependabot configuration for dependency updates
+- Funding configuration
+- Documentation: getting-started.md, architecture.md, deployment.md, faq.md
+
+### Changed
+
+- Rewrote README.md with badges, project structure, and comprehensive documentation
+- Updated pyproject.toml with homepage, repository, bugs URL, keywords, classifiers, and license metadata
+- Updated CHANGELOG.md to follow Keep a Changelog format strictly
+
+## [0.3.1] - 2026-05-01
+
+### Changed
+
+- Restructured source code from `src/tsn_affinity/` to `tsn_affinity/`
+- Moved CLI modules from `bin/` to `tsn_affinity/cli/`
+- Added `configs/`, `scripts/`, `docs/`, `tests/` directory structure
+- Added interfaces, services, and README files throughout packages
+- Restructured tests from flat layout to mirrored package structure
 
 ## [0.3.0] - 2026-04-30
 

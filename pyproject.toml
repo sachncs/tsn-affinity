@@ -4,10 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tsn-affinity"
-version = "0.1.0"
-description = "TSN-Affinity: Training-Aware Sparse Networks with Affinity Routing for Continual Offline RL"
+version = "0.3.1"
+description = "Training-Aware Sparse Networks with Affinity Routing for Continual Offline RL"
 readme = "README.md"
 requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "sachin-cs"},
+]
+keywords = ["reinforcement-learning", "continual-learning", "offline-rl", "sparse-networks", "decision-transformer"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
     "torch>=2.0",
     "gymnasium",
@@ -15,9 +30,26 @@ dependencies = [
     "scikit-learn>=1.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/sachn-cs/tsn-affinity"
+Repository = "https://github.com/sachn-cs/tsn-affinity"
+Issues = "https://github.com/sachn-cs/tsn-affinity/issues"
+Changelog = "https://github.com/sachn-cs/tsn-affinity/blob/master/CHANGELOG.md"
+
 [project.optional-dependencies]
 atari = ["gymnasium[accept-license-requests]"]
-dev = ["pytest", "pytest-cov", "ruff>=0.6.0", "mypy>=1.0", "pre-commit"]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff>=0.6.0",
+    "mypy>=1.0",
+    "pre-commit",
+    "build",
+    "twine",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
 
 [project.scripts]
 tsn-benchmark = "tsn_affinity.cli.benchmark:main"
@@ -27,6 +59,9 @@ tsn-panda = "tsn_affinity.cli.panda:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["tsn_affinity*"]
+
+[tool.setuptools.package-data]
+"tsn_affinity" = ["py.typed"]
 
 [tool.ruff]
 target-version = "py310"

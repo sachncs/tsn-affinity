@@ -52,7 +52,7 @@ coverage.xml
 
 # Environments
 .env
-.venv
+.venv/
 env/
 venv/
 ENV/
@@ -89,6 +89,11 @@ Thumbs.db
 runs/
 *.pth
 *.pt
+*.npy
+*.npz
 
-# Build artifacts
-src/tsn_affinity.egg-info/
+# Pre-commit
+.pre-commit-cache/
+
+# mkdocs
+docs/site/
