@@ -2,7 +2,7 @@
   <h1 align="center">TSN-Affinity</h1>
   <p align="center">Training-Aware Sparse Networks with Affinity Routing for Continual Offline Reinforcement Learning.</p>
   <p align="center">
-    <a href="#installation"><img src="https://img.shields.io/badge/python-3.12%20%7C%203.13-blue" alt="Python"></a>
+    <a href="#installation"><img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
     <a href="https://github.com/sachncs/tsn-affinity/actions"><img src="https://img.shields.io/github/actions/workflow/status/sachncs/tsn-affinity/ci.yml?branch=master" alt="CI"></a>
     <a href="https://pypi.org/project/tsn-affinity/"><img src="https://img.shields.io/pypi/v/tsn-affinity" alt="PyPI"></a>
