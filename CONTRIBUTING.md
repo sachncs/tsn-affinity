@@ -28,7 +28,7 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
    ```
 3. Add the upstream remote:
    ```bash
-   git remote add upstream https://github.com/sachn-cs/tsn-affinity.git
+   git remote add upstream https://github.com/sachncs/tsn-affinity.git
    ```
 4. Create a branch from `master`:
    ```bash
@@ -184,4 +184,4 @@ pytest -m "not slow"
 
 ## Questions?
 
-Open a [Discussion](https://github.com/sachn-cs/tsn-affinity/discussions) on GitHub.
+Open a [Discussion](https://github.com/sachncs/tsn-affinity/discussions) on GitHub.

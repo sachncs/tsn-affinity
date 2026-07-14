@@ -13,7 +13,7 @@ This guide walks you through installing TSN-Affinity and running your first cont
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/sachn-cs/tsn-affinity.git
+git clone https://github.com/sachncs/tsn-affinity.git
 cd tsn-affinity
 
 # Create a virtual environment (recommended)

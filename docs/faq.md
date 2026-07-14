@@ -85,4 +85,4 @@ mypy tsn_affinity/                  # Type check
 
 ### Where do I report bugs?
 
-Open an issue on [GitHub](https://github.com/sachn-cs/tsn-affinity/issues) using the bug report template.
+Open an issue on [GitHub](https://github.com/sachncs/tsn-affinity/issues) using the bug report template.

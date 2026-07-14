@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "sachin-cs"},
+    {name = "Sachin", email = "sachncs@gmail.com"},
 ]
 keywords = ["reinforcement-learning", "continual-learning", "offline-rl", "sparse-networks", "decision-transformer"]
 classifiers = [
@@ -31,10 +31,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sachn-cs/tsn-affinity"
-Repository = "https://github.com/sachn-cs/tsn-affinity"
-Issues = "https://github.com/sachn-cs/tsn-affinity/issues"
-Changelog = "https://github.com/sachn-cs/tsn-affinity/blob/master/CHANGELOG.md"
+Homepage = "https://github.com/sachncs/tsn-affinity"
+Repository = "https://github.com/sachncs/tsn-affinity"
+Issues = "https://github.com/sachncs/tsn-affinity/issues"
+Changelog = "https://github.com/sachncs/tsn-affinity/blob/master/CHANGELOG.md"
 
 [project.optional-dependencies]
 atari = ["gymnasium[accept-license-requests]"]

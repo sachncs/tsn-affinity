@@ -1,7 +1,7 @@
 # TSN-Affinity
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/sachn-cs/tsn-affinity/actions/workflows/ci.yml/badge.svg)](https://github.com/sachn-cs/tsn-affinity/actions/workflows/ci.yml)
+[![CI](https://github.com/sachncs/tsn-affinity/actions/workflows/ci.yml/badge.svg)](https://github.com/sachncs/tsn-affinity/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-black.svg)](https://github.com/astral-sh/ruff)
 
@@ -22,7 +22,7 @@ TSN-Affinity combines sparse mask-based subnetwork allocation (TinySubNetworks) 
 ## Installation
 
 ```bash
-git clone https://github.com/sachn-cs/tsn-affinity.git
+git clone https://github.com/sachncs/tsn-affinity.git
 cd tsn-affinity
 pip install -e .
 ```

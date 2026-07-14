@@ -1,8 +1,8 @@
 site_name: TSN-Affinity
 site_description: Training-Aware Sparse Networks with Affinity Routing for Continual Offline RL
-site_url: https://sachn-cs.github.io/tsn-affinity/
-repo_url: https://github.com/sachn-cs/tsn-affinity
-repo_name: sachn-cs/tsn-affinity
+site_url: https://sachncs.github.io/tsn-affinity/
+repo_url: https://github.com/sachncs/tsn-affinity
+repo_name: sachncs/tsn-affinity
 edit_uri: edit/master/docs/
 
 theme:
@@ -70,6 +70,6 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/sachn-cs/tsn-affinity
+      link: https://github.com/sachncs/tsn-affinity
 
 copyright: Copyright &copy; 2026 sachin-cs. Licensed under MIT.
