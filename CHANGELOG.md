@@ -1,0 +1,249 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.4.0] - 2026-09-09
+
+### Added
+
+- **New `tsn_affinity.benchmarks` package** with `TaskSpec`, `TaskRegistry`,
+  `AtariAdapter`, `PandaAdapter`, `BaseEnvAdapter`, `StandardCLMetrics`,
+  `compute_acc`, `compute_bwt`, `compute_forgetting`, `compute_fwt`, and
+  the `ATARI_GAMES` / `ATARI_BASELINES` citation tables.
+- **`tsn-atari-collect` CLI** for collecting random-policy Atari
+  trajectories, separate from the training/evaluation pipeline.
+- **Optional gymnasium import** in the Atari CLI; `tsn-atari --help`
+  works without the Atari extra installed.
+- **DecisionTransformer.act() tests** covering deterministic vs
+  stochastic sampling, sequence-length truncation, CNN observations,
+  continuous actions of multiple dimensions.
+- **`atopy.extras` configuration** that pins CI mypy to strict mode.
+- **`.github/FUNDING.yml`** with GitHub Sponsors and Open Collective
+  links.
+- **Comprehensive docs site** with `mkdocs-material`, custom CSS, hero
+  block, expanded guides, architecture pages, per-package API
+  reference, CLI reference, reproducibility guide, and troubleshooting.
+- **Social preview asset** at `docs/assets/images/social-preview.png`
+  so GitHub renders a branded card when the repo is shared.
+
+### Changed
+
+- **Unified routing configuration.** `RoutingConfig` in
+  `tsn_affinity.core.config` now consolidates affinity-routing fields,
+  replay-KL fields, and warm-start fields. `AffinityRoutingConfig`
+  and `ReplayKLRoutingConfig` remain as backwards-compatible aliases.
+- **Public API re-exported from `tsn_affinity.__init__`.** Common
+  symbols (strategies, configs, exceptions, sparse layers, routing
+  helpers) are now importable directly from the top-level package.
+- **Single-call seed propagation.** `BaseStrategy.__init__` accepts a
+  `seed` argument that seeds `numpy`, `torch`, and the strategy-local
+  generator. Every strategy forwards the seed to its parent.
+- **Separated cross-entropy and MSE affinity.** `compute_action_affinity`
+  and `compute_action_affinity_batch` now accept an `affinity_metric`
+  argument and refuse to conflate the two. Discrete actions yield
+  cross-entropy; continuous actions yield MSE.
+- **`RoutingConfig` seed + affinity_metric.** Both flags are exposed
+  through the CLI and the Python API.
+- **Hybrid routing validates against NaN.** `_select_copy_for_new_task`
+  raises `RoutingError` when any score is non-finite, instead of
+  silently routing to the first copy.
+- **`_compute_task_keep_ratio` raises `ConfigurationError`** when mask
+  capacity is exhausted, rather than saturating the ratio to 1.0.
+- **`TSNReplayKLStrategy._activate_copy`** restores `per_task_masks`,
+  `consolidated_masks`, `task_codebooks`, and `task_keep_ratios` so
+  task switches preserve all per-copy state.
+- **Atari CLI cited baselines.** `human_baselines` and `random_baselines`
+  come from the ALE tables and Mnih et al. (2015); the citation is
+  recorded in `results.json` under `human_baselines_source`.
+- **Atari CLI no longer markets random-policy rollouts as a benchmark.**
+  The CLI is described as an offline-RL training pipeline, and the
+  README distinguishes between collecting trajectories and learning
+  a policy.
+- **Stricter mypy configuration.** `disallow_untyped_defs` and
+  `disallow_incomplete_defs` are now `true`; `py.typed` is honoured.
+- **Type hints and Google-style docstrings** throughout the new code
+  paths.
+- **Updated README** with the rebranded product story and a callout
+  explaining why `tsn_affinity` ACC can trail `tsn_core` ACC on the
+  synthetic benchmark.
+- **Removed stale benchmark artefacts** in `runs/`. The directory
+  now ships only a `README.md` documenting how to regenerate real
+  results.
+
+### Fixed
+
+- `tests/benchmarks/test_adapters.py`, `test_metrics.py`,
+  `test_registry.py`, and `tests/run/test_analysis.py` no longer
+  fail collection because the `tsn_affinity.benchmarks` package
+  exists again.
+- `tsn-atari --help` no longer crashes when gymnasium is not
+  installed; the gymnasium import is deferred to runtime.
+- `TSNReplayKLStrategy` no longer drops `consolidated_masks` and
+  `per_task_masks` when switching model copies.
+- `AffinityRouter` raises `RoutingError` on NaN scores instead of
+  silently returning the first copy.
+
+## [Unreleased]
+
+### Added
+
+- MIT License file
+- CONTRIBUTING.md with development guidelines
+- CODE_OF_CONDUCT.md (Contributor Covenant v2.1)
+- SECURITY.md with vulnerability reporting process
+- .editorconfig for consistent formatting
+- .gitattributes for line ending normalization
+- .env.example for environment variable documentation
+- GitHub issue templates (bug report, feature request)
+- Pull request template
+- Dependabot configuration for dependency updates
+- Funding configuration
+- Documentation: getting-started.md, architecture.md, deployment.md, faq.md
+
+### Changed
+
+- Rewrote README.md with badges, project structure, and comprehensive documentation
+- Updated pyproject.toml with homepage, repository, bugs URL, keywords, classifiers, and license metadata
+- Updated CHANGELOG.md to follow Keep a Changelog format strictly
+
+## [0.3.1] - 2026-05-01
+
+### Changed
+
+- Restructured source code from `src/tsn_affinity/` to `tsn_affinity/`
+- Moved CLI modules from `bin/` to `tsn_affinity/cli/`
+- Added `configs/`, `scripts/`, `docs/`, `tests/` directory structure
+- Added interfaces, services, and README files throughout packages
+- Restructured tests from flat layout to mirrored package structure
+
+## [0.3.0] - 2026-04-30
+
+### Added
+
+- `bin/benchmark.py`: Reproducible synthetic benchmark suite with statistical validation, timing measurements, and multi-run aggregation
+- `tests/test_strategies.py`: New tests for DecisionTransformer act() method (online inference), routing behavior, and copy creation
+
+### Changed
+
+- **DecisionTransformer act() method**: Fixed multiple bugs in online inference:
+  - Corrected padding logic for sequence building (was using wrong length for pad_len calculation)
+  - Fixed action sequence padding (was using -1 which is invalid for embedding lookup, now uses 0)
+  - Added proper unsqueeze for obs_seq to match forward pass expectations
+  - Fixed rtg_embed input shape ([B*K, 1] instead of [B, K])
+- **greedy_rollout evaluation**: Now properly clips actions to valid environment range and uses cumulative returns as returns_to_go
+- **Human-normalized Atari scores**: Evaluation now uses ALE human/random baselines for proper score normalization
+
+### Performance
+
+- Routing overhead: ~50% additional training time per task due to affinity computation
+- Memory: Each model copy increases memory footprint by ~model size
+
+### Benchmark Results
+
+Synthetic benchmark (5 tasks, 10 trajs/task, 200 train steps, 3 runs):
+- tsn_core: ACC=0.5388±0.0028, Forgetting=0.0028±0.0007
+- tsn_affinity: ACC=0.4017±0.0041, Forgetting=0.0026±0.0016
+
+## [0.2.0] - 2026-04-29
+
+### Added
+
+- `bin/run_benchmark.py`: Comprehensive benchmark suite with statistical validation, timing measurements, and memory tracking
+- `tests/test_affinity_routing.py`: Tests for affinity routing metrics and edge cases
+- `tests/test_strategies.py`: Tests for TSN-Core and TSN-Affinity strategy implementations
+
+### Changed
+
+- **Optimized TopKMaskSTE**: Replaced `torch.topk` class method with tensor method for better performance
+- **Vectorized affinity computation**: Added `_AffinityBatchLoader` class for efficient batch loading during affinity estimation
+- **Fixed GPU memory handling**: Added `non_blocking=True` for async CPU-GPU transfers in latent affinity computation
+- **Fixed mask handling**: Corrected shape inference in DecisionTransformer forward pass for 5D observations
+- **Fixed gradient utilities**: Corrected parameter naming in `zero_gradients_for_frozen_params` (use `rsplit` not `rpartition`)
+- **Fixed batch generator**: `make_minibatches` now yields 5 values (including precomputed mask) instead of 4
+- **Fixed warmstarter import**: `MaskWarmstarter` now correctly imports `iter_sparse_modules`
+
+### Performance
+
+- Routing computation: ~15% faster due to vectorized batch loading
+- Memory transfers: Reduced overhead with async CPU-GPU operations
+- TopK selection: Improved through tensor method usage instead of class method
+
+## [0.1.0] - 2026-04-29
+
+### Added
+
+- **Initial release**: Complete re-implementation of TSN-Affinity algorithm from paper.
+
+#### Core Architecture
+- `core/attention.py`: CausalSelfAttention, MLP, Block, LayerNorm classes
+- `core/config.py`: ModelConfig, SparseConfig, RoutingConfig, TSNAffinityConfig dataclasses
+- `core/decision_transformer.py`: DecisionTransformer and DTBackbone classes
+- `core/obs_encoder.py`: ObsEncoder with CNN and MLP modes
+
+#### Sparse Layers
+- `sparse/topk_ste.py`: TopKMaskSTE autograd function (straight-through estimator)
+- `sparse/base_sparse_layer.py`: TSNNMaskMixin for mask management
+- `sparse/sparse_linear.py`: TSNSparseLinear layer
+- `sparse/sparse_conv2d.py`: TSNSparseConv2d layer
+- `sparse/sparse_embedding.py`: TSNSparseEmbedding layer
+- `sparse/module_converter.py`: convert_to_sparse, iter_sparse_modules, kmeans_quantize utilities
+
+#### Routing
+- `routing/affinity_metrics.py`: compute_action_affinity, compute_latent_affinity, compute_hybrid_affinity
+- `routing/affinity_router.py`: AffinityRouter class with action/latent/hybrid modes
+- `routing/warmstarter.py`: MaskWarmstarter for mask score warm-starting
+
+#### Strategies
+- `strategies/base_strategy.py`: BaseStrategy abstract class
+- `strategies/model_copy.py`: ModelCopy dataclass for model copy state
+- `strategies/copy_manager.py`: CopyManager for model copy lifecycle
+- `strategies/training_utils.py`: TrainingSnapshot, snapshot/restore utilities
+- `strategies/tsn_base.py`: TSNBaseStrategy with mask management and quantization
+- `strategies/tsn_core.py`: TSNCoreStrategy (single copy, no routing baseline)
+- `strategies/tsn_replay_kl.py`: TSNReplayKLStrategy (replay-memory KL routing)
+- `strategies/tsn_affinity.py`: TSNAffinityStrategy (full action/latent/hybrid routing)
+
+#### Benchmarks
+- `benchmarks/task_spec.py`: TaskSpec dataclass
+- `benchmarks/task_registry.py`: TaskRegistry singleton
+- `benchmarks/adapters/base.py`: BaseEnvAdapter protocol
+- `benchmarks/adapters/atari_adapter.py`: AtariAdapter for ALE environments
+- `benchmarks/adapters/panda_adapter.py`: PandaAdapter for robotic manipulation
+- `benchmarks/metrics.py`: compute_acc, compute_bwt, compute_forgetting, compute_fwt, StandardCLMetrics
+
+#### Data
+- `data/trajectory.py`: Trajectory class and discount_cumsum utility
+- `data/batch_generator.py`: make_minibatches, masked_cross_entropy, masked_mse
+- `data/panda_data.py`: Panda-specific data loading utilities
+
+#### Run
+- `run/benchmark_runner.py`: BenchmarkRunner for continual learning evaluation
+- `run/analysis.py`: analyze_run, compute_final_metrics, compare_runs
+
+#### Entry Points
+- `bin/run_atari.py`: Atari benchmark runner
+- `bin/run_panda.py`: Panda benchmark runner
+
+#### Testing
+- `tests/test_core.py`: Core DT component tests
+- `tests/test_data.py`: Data module tests
+- `tests/test_metrics.py`: Metrics computation tests
+- `tests/test_routing.py`: Routing utility tests
+- `tests/test_sparse.py`: Sparse layer tests
+
+### Changed
+
+- **Complete re-architecture**: All semi-private `_`-prefixed names replaced with fully public descriptive names
+- **Modular package structure**: Separated into core/, sparse/, routing/, strategies/, benchmarks/, data/, run/ packages
+- **Configuration dataclasses**: All hyperparameters use typed dataclasses
+- **Google Python Style Guide compliance**: Type hints and docstrings throughout
+
+### Fixed
+
+- `core/obs_encoder.py`: Fixed `d_model` reference to `self.d_model` in helper methods
+- `routing/affinity_metrics.py`: Fixed symmetric KL computation (removed generator comprehension bug)
+- `benchmarks/__init__.py`: Fixed import name `BaseEnvAdapter` vs `EnvAdapter`
+- `sparse/base_sparse_layer.py`: Added missing `import torch`

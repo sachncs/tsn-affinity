@@ -1,0 +1,144 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tsn-affinity"
+version = "0.3.1"
+description = "Training-Aware Sparse Networks with Affinity Routing for Continual Offline RL"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Sachin", email = "sachncs@gmail.com"},
+]
+keywords = ["reinforcement-learning", "continual-learning", "offline-rl", "sparse-networks", "decision-transformer"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.0",
+    "gymnasium",
+    "numpy>=1.24",
+    "scikit-learn>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sachncs/tsn-affinity"
+Repository = "https://github.com/sachncs/tsn-affinity"
+Issues = "https://github.com/sachncs/tsn-affinity/issues"
+Changelog = "https://github.com/sachncs/tsn-affinity/blob/master/CHANGELOG.md"
+
+[project.optional-dependencies]
+atari = ["gymnasium[accept-license-requests]"]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff>=0.6.0",
+    "mypy>=1.0",
+    "pre-commit",
+    "build",
+    "twine",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+
+[project.scripts]
+tsn-benchmark = "tsn_affinity.cli.benchmark:main"
+tsn-atari = "tsn_affinity.cli.atari:main"
+tsn-atari-collect = "tsn_affinity.cli.atari_collect:main"
+tsn-panda = "tsn_affinity.cli.panda:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tsn_affinity*"]
+
+[tool.setuptools.package-data]
+"tsn_affinity" = ["py.typed"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "D", "W", "UP", "B"]
+ignore = ["D105", "D107"]
+unfixable = []
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D101", "D102", "D103", "D104"]
+"tsn_affinity/cli/**" = ["D103"]
+
+[tool.ruff.lint.pep8-naming]
+extend-ignore-names = ["B", "C", "D", "F", "H", "K", "L", "T", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = false
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+show_error_codes = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_equality = true
+exclude = ["tests/", "docs/"]
+
+[[tool.mypy.overrides]]
+module = ["gymnasium.*", "PIL.*", "sklearn.*", "numpy.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers --cov=tsn_affinity --cov-report=term-missing --cov-fail-under=70"
+markers = [
+    "slow: marks tests as slow (deselect with '-m not slow')",
+    "gpu: marks tests that require CUDA",
+]
+
+[tool.coverage.run]
+source = ["tsn_affinity"]
+omit = [
+    "tsn_affinity/__init__.py",
+    "tsn_affinity/**/__init__.py",
+    "tsn_affinity/data/trajectory.py",
+    "tsn_affinity/data/batch.py",
+    "tsn_affinity/data/panda.py",
+    "tsn_affinity/interfaces/*.py",
+    "tsn_affinity/cli/*.py",
+    "tsn_affinity/run/benchmark.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

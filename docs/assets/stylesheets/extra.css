@@ -1,0 +1,358 @@
+/* TSN-Affinity site stylesheet
+ *
+ * Brand colours live on --tsn-primary (teal) and --tsn-accent
+ * (amber). Layout rules are kept narrow on purpose so that the
+ * default Material theme remains the canonical surface.
+ */
+
+/* Brand colours ---------------------------------------------------- */
+
+:root {
+  --tsn-primary: #00695c;
+  --tsn-primary-light: #439889;
+  --tsn-primary-dark: #004d40;
+  --tsn-accent: #ffb300;
+  --tsn-gradient-start: #00695c;
+  --tsn-gradient-end: #26a69a;
+}
+
+[data-md-color-scheme="slate"] {
+  --tsn-primary: #4db6ac;
+  --tsn-primary-light: #80cbc4;
+  --tsn-primary-dark: #26a69a;
+  --tsn-accent: #ffd54f;
+  --tsn-gradient-start: #004d40;
+  --tsn-gradient-end: #00695c;
+  --md-default-bg-color: hsla(225, 15%, 14%, 1);
+  --md-default-fg-color: #eceff1;
+  --md-default-fg-color--light: #b0bec5;
+  --md-default-fg-color--lighter: #78909c;
+  --md-default-fg-color--lightest: #455a64;
+  --md-typeset-table-color: hsla(225, 15%, 18%, 1);
+  --md-code-bg-color: hsla(225, 15%, 12%, 1);
+  --md-code-fg-color: #eceff1;
+  --md-code-hl-comment-color: #607d8b;
+  --md-code-hl-keyword-color: #80cbc4;
+  --md-code-hl-string-color: #ffcc80;
+  --md-code-hl-number-color: #ffab91;
+  --md-code-hl-function-color: #b39ddb;
+  --md-code-hl-class-color: #b39ddb;
+  --md-code-hl-operator-color: #80cbc4;
+  --md-code-hl-punctuation-color: #b0bec5;
+}
+
+/* Header ---------------------------------------------------------- */
+
+.md-header {
+  background-color: var(--tsn-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background-color: var(--tsn-primary);
+  color: #ffffff;
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: var(--tsn-primary-dark);
+}
+
+.md-header__title .md-ellipsis {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.md-tabs__link {
+  font-weight: 500;
+}
+
+/* Hero block (index.md) ------------------------------------------ */
+
+.md-content article:first-of-type h1 {
+  font-size: 3.4rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2em;
+  background: linear-gradient(
+    135deg,
+    var(--tsn-primary),
+    var(--tsn-accent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0 0 1.5em;
+  max-width: 60ch;
+}
+
+.hero-cta {
+  margin: 1.5em 0 1.5em;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-cta .md-button--primary {
+  background-color: var(--tsn-primary);
+  border-color: var(--tsn-primary);
+  color: #ffffff;
+}
+
+.hero-cta .md-button--primary:hover {
+  background-color: var(--tsn-primary-dark);
+  border-color: var(--tsn-primary-dark);
+}
+
+.hero-meta {
+  margin: 1.5em 0 2em;
+}
+
+.hero-meta img {
+  margin-right: 0.25em;
+  vertical-align: middle;
+}
+
+/* Card grid (index.md "What you can do with it" + "Next steps") ----- */
+
+.grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5em 0;
+}
+
+.grid.cards > ul > li,
+.grid.cards > ol > li {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: transform 120ms ease, box-shadow 120ms ease,
+    border-color 120ms ease;
+}
+
+.grid.cards > ul > li:hover,
+.grid.cards > ol > li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  border-color: var(--tsn-primary-light);
+}
+
+.grid.cards > ul > li > hr,
+.grid.cards > ol > li > hr {
+  margin: 0.5em 0;
+  border-color: var(--md-default-fg-color--lightest);
+}
+
+.grid.cards > ul > li > p > strong,
+.grid.cards > ol > li > p > strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--md-default-fg-color);
+}
+
+.grid.cards > ul > li > p > .twemoji,
+.grid.cards > ol > li > p > .twemoji {
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+
+.grid.cards > * {
+  margin-bottom: 0;
+}
+
+/* tsn-package-grid (api.md) --------------------------------------- */
+
+.tsn-package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5em 0;
+}
+
+.tsn-package-grid ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.tsn-package-grid li {
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--tsn-primary);
+  background: var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="slate"] .tsn-package-grid li {
+  background: hsla(225, 15%, 18%, 1);
+}
+
+.tsn-package-grid li code {
+  font-weight: 600;
+  color: var(--tsn-primary);
+}
+
+[data-md-color-scheme="slate"] .tsn-package-grid li code {
+  color: var(--tsn-primary-light);
+}
+
+.tsn-package-grid li a {
+  margin-left: 0.25em;
+}
+
+/* Inline code spans ------------------------------------------------ */
+
+[data-md-color-scheme="slate"] code {
+  background-color: hsla(225, 15%, 18%, 1);
+  color: #ffd180;
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+}
+
+/* Code blocks ---------------------------------------------------- */
+
+.md-typeset code,
+.md-typeset pre {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+  font-feature-settings: "calt" 1, "ss01" 1;
+}
+
+.md-typeset pre {
+  border-radius: 8px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset pre > code {
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+}
+
+.md-typeset pre > code::-webkit-scrollbar {
+  height: 8px;
+}
+
+.md-typeset pre > code::-webkit-scrollbar-thumb {
+  background: var(--tsn-primary);
+  border-radius: 4px;
+}
+
+/* ASCII architecture diagram (architecture.md) ------------------- */
+
+.md-typeset pre > code.language-text {
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.md-typeset pre > code {
+  /* Allow ASCII diagrams with wide lines to scroll horizontally */
+  white-space: pre;
+}
+
+.md-typeset pre code .tree {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Admonitions -------------------------------------------------- */
+
+.md-typeset .admonition {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
+
+.md-typeset .admonition.note,
+.md-typeset .admonition.tip {
+  border-color: var(--tsn-accent);
+}
+
+/* Tables ------------------------------------------------------- */
+
+.md-typeset table:not([class]) {
+  font-size: 0.85rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--tsn-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background: var(--tsn-primary-dark);
+}
+
+/* H2/H3 headings inside content */
+
+.md-typeset h2 {
+  font-weight: 600;
+  border-bottom: 2px solid var(--tsn-primary);
+  padding-bottom: 0.25em;
+  margin-top: 2em;
+}
+
+/* Footer ------------------------------------------------------- */
+
+.md-footer-meta {
+  background: linear-gradient(
+    90deg,
+    var(--tsn-gradient-start),
+    var(--tsn-gradient-end)
+  );
+  color: #ffffff;
+}
+
+.md-footer-meta a,
+.md-footer-meta .md-copyright {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Theme toggle (must exist for the palette switcher to render) */
+
+.md-header__option {
+  display: flex;
+  align-items: center;
+}
+
+.md-header__button.md-icon {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.md-header__button.md-icon:hover {
+  opacity: 1;
+}
+
+/* Reduce the gap between the header and the content */
+
+.md-main__inner {
+  margin-top: 0.5rem;
+}
+
+/* Make the social links in the header render as icons only */
+
+.md-header__source .md-source__icon {
+  display: inline;
+}
+
+.md-header__source .md-source__repository,
+.md-header__source .md-source__facts {
+  display: none !important;
+}
+
+.md-header__source .md-source__icon svg {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+[data-md-color-scheme="default"] .md-header__source .md-source__icon svg {
+  fill: rgba(255, 255, 255, 0.9);
+}

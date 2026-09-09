@@ -1,0 +1,149 @@
+site_name: TSN-Affinity
+site_description: Training-Aware Sparse Networks with Affinity Routing for Continual Offline Reinforcement Learning.
+site_url: https://sachncs.github.io/tsn-affinity/
+repo_url: https://github.com/sachncs/tsn-affinity
+repo_name: sachncs/tsn-affinity
+edit_uri: edit/master/docs/
+docs_dir: docs
+exclude_docs: |
+  README.md
+
+copyright: Copyright &copy; 2026 sachin-cs. Licensed under MIT.
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - toc.follow
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/network
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sachncs/tsn-affinity
+      name: TSN-Affinity on GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/tsn-affinity/
+      name: TSN-Affinity on PyPI
+  generator: false
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [".."]
+          options:
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            heading_level: 3
+            members_order: source
+            docstring_style: google
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            docstring_section_style: table
+            merge_init_into_class: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started.md
+      - Installation: guides/installation.md
+      - First Benchmark: guides/first-benchmark.md
+      - Concepts: guides/concepts.md
+  - How-To Guides:
+      - guides/index.md
+      - Train Your Own Model: guides/custom-training.md
+      - Tune Sparsity: guides/sparsity-tuning.md
+      - Choose a Routing Mode: guides/routing-modes.md
+      - Run Atari Experiments: guides/atari.md
+      - Add a New Environment: guides/new-environment.md
+  - Architecture:
+      - architecture.md
+      - Sparse Layers: architecture/sparse-layers.md
+      - Affinity Routing: architecture/affinity-routing.md
+      - Decision Transformer: architecture/decision-transformer.md
+      - Continual Learning Loop: architecture/training-loop.md
+  - API Reference:
+      - api.md
+      - Core: api/core.md
+      - Strategies: api/strategies.md
+      - Sparse Layers: api/sparse.md
+      - Routing: api/routing.md
+      - Data: api/data.md
+      - Benchmarks: api/benchmarks.md
+      - Interfaces: api/interfaces.md
+  - Operations:
+      - deployment.md
+      - CLI Reference: operations/cli.md
+      - Reproducibility: operations/reproducibility.md
+      - Troubleshooting: operations/troubleshooting.md
+  - Community:
+      - FAQ: faq.md
+      - Contributing: contributing.md
+      - Code of Conduct: code-of-conduct.md
+      - Security: security.md
+      - Support: support.md
+  - Changelog: changelog.md
